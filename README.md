@@ -19,14 +19,14 @@ MyProject.Controllers.V2.TasksController
 
 ####To Test####
 
-Simply run the project from VS2015,  and then in Fiddler, POST the following requests ...
+Simply run the project from VS2015 using ctrl-F5,  and then in Fiddler, POST the following requests ...
 
-(1) http://localhost:50333//api/v1/tasks
+(1) http://localhost:50333/api/v1/tasks
 
-(2) http://localhost:50333//api/v2/tasks
+(2) http://localhost:50333/api/v2/tasks
 
 
-Both will respond with a message confirming which controller the request was routed to.
+Both will respond with a message confirming which controller the request was routed to. (You may need to change the port number from 50333 to whatever is relevant on your system)
 
 
 
