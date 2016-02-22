@@ -28,7 +28,7 @@ In Visual Studio 2015, uncomment the line '// ConfigureNamespaceVersioning(confi
 
 Both will respond with a message confirming which controller the request was routed to. (You may need to change the port number from 50333 to whatever is relevant on your system)
 
-####Problem 01####
+####Problem 02####
 We want to version our web by defining URIs like the following:
 
 /api/v1/tasks/
@@ -36,7 +36,7 @@ We want to version our web by defining URIs like the following:
 /api/v2/tasks/
 
 
-These should map to controllers with the following names:
+But in this case we want to map to controllers with the following names:
 
 MyProject.Controllers.TasksController
 
