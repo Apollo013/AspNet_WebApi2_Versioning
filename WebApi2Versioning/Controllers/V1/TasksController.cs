@@ -16,10 +16,10 @@ namespace WebApi2Versioning.Controllers.V1
     public class TasksController : ApiController
     {
         [Route("", Name = "AddTaskRoute")]
-        [HttpPost]
-        public string AddTask(HttpRequestMessage requestMessage)
+        [HttpGet]
+        public string AddTask(HttpRequestMessage request)
         {
-            return "In v1, Task Added";
+            return "In V1 USING NAMESPACE HTTP CONTROLLER SELECTOR";
         }
     }
 }

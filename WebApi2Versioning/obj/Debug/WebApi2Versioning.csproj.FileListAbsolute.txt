@@ -23,6 +23,8 @@ C:\App Tests\WEBAPI\WebApi2Versioning\WebApi2Versioning\bin\Newtonsoft.Json.xml
 C:\App Tests\WEBAPI\WebApi2Versioning\WebApi2Versioning\bin\System.Net.Http.Formatting.xml
 C:\App Tests\WEBAPI\WebApi2Versioning\WebApi2Versioning\bin\System.Web.Http.xml
 C:\App Tests\WEBAPI\WebApi2Versioning\WebApi2Versioning\bin\System.Web.Http.WebHost.xml
-C:\App Tests\WEBAPI\WebApi2Versioning\WebApi2Versioning\obj\Debug\WebApi2Versioning.csprojResolveAssemblyReference.cache
 C:\App Tests\WEBAPI\WebApi2Versioning\WebApi2Versioning\obj\Debug\WebApi2Versioning.dll
 C:\App Tests\WEBAPI\WebApi2Versioning\WebApi2Versioning\obj\Debug\WebApi2Versioning.pdb
+C:\App Tests\WEBAPI\WebApi2Versioning\WebApi2Versioning\obj\Debug\WebApi2Versioning.csprojResolveAssemblyReference.cache
+C:\App Tests\WEBAPI\WebApi2Versioning\WebApi2Versioning\bin\System.Web.Http.Tracing.dll
+C:\App Tests\WEBAPI\WebApi2Versioning\WebApi2Versioning\bin\System.Web.Http.Tracing.xml

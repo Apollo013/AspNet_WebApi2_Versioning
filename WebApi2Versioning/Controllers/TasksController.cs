@@ -4,18 +4,18 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using WebApi2Versioning.Routing;
 
-namespace WebApi2Versioning.Controllers.V2
+namespace WebApi2Versioning.Controllers
 {
-    [RoutePrefix("api/{apiVersion:apiVersionConstraint(v2)}/tasks")]
+    //[RoutePrefix("api/tasks")]
     public class TasksController : ApiController
     {
-        [Route("", Name = "AddTaskRouteV2")]
         [HttpGet]
+        //[Route(Name = "AddTask")]
         public string AddTask()
         {
-            return "In V2 USING NAMESPACE HTTP CONTROLLER SELECTOR";
+            return "In V1 USING CONTROLLER NAME HTTP CONTROLLER SELECTOR";
         }
-
     }
 }

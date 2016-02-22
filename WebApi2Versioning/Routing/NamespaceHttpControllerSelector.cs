@@ -44,9 +44,7 @@ namespace WebApi2Versioning.Routing
 
                 if (!dictionary.Keys.Contains(controllerKey))
                 {
-                    dictionary[controllerKey] = new HttpControllerDescriptor(_configuration,
-                    controllerType.Name,
-                    controllerType);
+                    dictionary[controllerKey] = new HttpControllerDescriptor(_configuration, controllerType.Name, controllerType);
                 }
             }
 
@@ -64,17 +62,17 @@ namespace WebApi2Versioning.Routing
             var routeData = request.GetRouteData();
             if (routeData == null)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                throw new HttpResponseException(HttpStatusCode.Ambiguous);
             }
             var controllerName = GetControllerName(routeData);
             if (controllerName == null)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                throw new HttpResponseException(HttpStatusCode.Ambiguous);
             }
             var namespaceName = GetVersion(routeData);
             if (namespaceName == null)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                throw new HttpResponseException(HttpStatusCode.Ambiguous);
             }
             var controllerKey = String.Format(CultureInfo.InvariantCulture, "{0}.{1}",
             namespaceName, controllerName);
@@ -83,7 +81,7 @@ namespace WebApi2Versioning.Routing
             {
                 return controllerDescriptor;
             }
-            throw new HttpResponseException(HttpStatusCode.NotFound);
+            throw new HttpResponseException(HttpStatusCode.Ambiguous);
         }
 
         /// <summary>
@@ -114,9 +112,7 @@ namespace WebApi2Versioning.Routing
             if (subroute == null) return null;
             var dataTokenValue = subroute.Route.DataTokens.First().Value;
             if (dataTokenValue == null) return null;
-            var controllerName =
-            ((HttpActionDescriptor[])dataTokenValue).First()
-            .ControllerDescriptor.ControllerName.Replace("Controller", string.Empty);
+            var controllerName = ((HttpActionDescriptor[])dataTokenValue).First() .ControllerDescriptor.ControllerName.Replace("Controller", string.Empty);
             return controllerName;
         }
 
