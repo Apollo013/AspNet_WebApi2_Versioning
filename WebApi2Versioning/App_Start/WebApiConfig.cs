@@ -18,14 +18,17 @@ namespace WebApi2Versioning
             // Uncomment any one of the following
             // ConfigureNamespaceVersioning(config);
             // ConfigureControllerNameVersioning(config);
-            ConfigureQueryStringVersioning(config);
+            // ConfigureQueryStringVersioning(config);
+            // ConfigureCustomHeaderVersioning(config);
+            ConfigureAcceptHeaderVersioning(config);
+
         }
 
         private static void ConfigureNamespaceVersioning(HttpConfiguration config)
         {
             /**** METHOD 01 - USING DIFFERENT NAMESPACE ****/
-            // THE FOLLOWING FILES ARE USED
-            // (01) WebApi2Versioning.Controllers.V1.TasksController
+            // THE FOLLOWING CLASSES ARE IN PLAY ...
+            // (01) WebApi2Versioning.Controllers.V1.TasksController            /* NOTE THE DIFFERENT NAMESPACES */
             // (02) WebApi2Versioning.Controllers.V2.TasksController
             // (03) WebApi2Versioning.Routing.ApiVersion1RoutePrefixAttribute
             // (04) WebApi2Versioning.Routing.ApiVersionConstraint
@@ -50,8 +53,8 @@ namespace WebApi2Versioning
         private static void ConfigureControllerNameVersioning(HttpConfiguration config)
         {
             /**** METHOD 02 - USING DIFFERENT CONTROLLER NAME ****/
-            // THE FOLLOWING FILES ARE USED
-            // (01) WebApi2Versioning.Controllers.TasksController
+            // THE FOLLOWING CLASSES ARE IN PLAY ...
+            // (01) WebApi2Versioning.Controllers.TasksController            /* NOTE THE DIFFERENT CONTROLLER NAMES IN THE SAME NAMESPACE */
             // (02) WebApi2Versioning.Controllers.TasksV2Controller
             // (03) WebApi2Versioning.Routing.ControllerNameHttpControllerSelector
 
@@ -61,8 +64,8 @@ namespace WebApi2Versioning
             // http://localhost:[YOUR_PORT_NUMBER]/api/v2/tasks/
 
             /**** NOTE ****/
-            // This particular configuration ONLY allows us to use V2 (see ControllerNameHttpControllerSelector)
-            // Alos note for this example, controllers are explicitly specified
+            // This particular configuration ONLY allows us to use V2 (see why => ControllerNameHttpControllerSelector)
+            // Also note for this example, controllers are explicitly specified
             config.Routes.MapHttpRoute(name: "Tasks", routeTemplate: "api/v1/tasks", defaults: new { controller = "tasks" });
             config.Routes.MapHttpRoute(name: "Tasks2", routeTemplate: "api/v2/tasks", defaults: new { controller = "tasksV2" });
             config.Services.Replace(typeof(IHttpControllerSelector), new ControllerNameHttpControllerSelector(config));
@@ -70,19 +73,68 @@ namespace WebApi2Versioning
 
         private static void ConfigureQueryStringVersioning(HttpConfiguration config)
         {
-            /**** METHOD 02 - USING QUERY STRING WHERE PARAMETER = '?V1' or '?V2' ****/
-            // THE FOLLOWING FILES ARE USED
+            /**** METHOD 03 - USING QUERY STRING WHERE PARAMETER = '?V1' or '?V2' ****/
+            // THE FOLLOWING CLASSES ARE IN PLAY ...
             // (01) WebApi2Versioning.Controllers.TasksController
             // (02) WebApi2Versioning.Controllers.TasksV2Controller
-            // (03) WebApi2Versioning.Routing.ControllerNameHttpControllerSelector
+            // (03) WebApi2Versioning.Routing.QueryStringHttpControllerSelector
 
             /**** TO TEST ****/
             // Use FIDDLER or POSTMAN and try the following GET requests
             // http://localhost:[YOUR_PORT_NUMBER]/api/tasks/?V1
             // http://localhost:[YOUR_PORT_NUMBER]/api/tasks/?V2
-            config.Routes.MapHttpRoute(name: "Tasks", routeTemplate: "api/{controller}");
-            config.Routes.MapHttpRoute(name: "Tasks2", routeTemplate: "api/{controller}");
+            config.Routes.MapHttpRoute(name: "Default", routeTemplate: "api/{controller}");
             config.Services.Replace(typeof(IHttpControllerSelector), new QueryStringHttpControllerSelector(config));
+        }
+
+        private static void ConfigureCustomHeaderVersioning(HttpConfiguration config)
+        {
+            /**** METHOD 04 - USING CUSTOM REQUEST HEADER PARAMETER  ****/
+            // THE FOLLOWING CLASSES ARE IN PLAY ...
+            // (01) WebApi2Versioning.Controllers.TasksController
+            // (02) WebApi2Versioning.Controllers.TasksV2Controller
+            // (03) WebApi2Versioning.Routing.CustomHeaderParamHttpControllerSelector
+
+            /**** TO TEST ****/
+            // Use FIDDLER or POSTMAN and try the following GET request
+            // http://localhost:[YOUR_PORT_NUMBER]/api/tasks/
+
+            /* In the header sepcify ...
+                User-Agent: Fiddler
+                Version-Num: V1
+
+            OR
+
+                User-Agent: Fiddler
+                Version-Num: V2
+            */
+            config.Routes.MapHttpRoute(name: "Default", routeTemplate: "api/{controller}");
+            config.Services.Replace(typeof(IHttpControllerSelector), new CustomHeaderParamHttpControllerSelector(config));
+        }
+
+        private static void ConfigureAcceptHeaderVersioning(HttpConfiguration config)
+        {
+            /**** METHOD 05 - USING CONTENT NEGOTIATION WITH THE ACCEPT HEADER PARAMETER  ****/
+            // THE FOLLOWING CLASSES ARE IN PLAY ...
+            // (01) WebApi2Versioning.Controllers.TasksController
+            // (02) WebApi2Versioning.Controllers.TasksV2Controller
+            // (03) WebApi2Versioning.Routing.AcceptHeaderParamHttpControllerSelector
+
+            /**** TO TEST ****/
+            // Use FIDDLER or POSTMAN and try the following GET request
+            // http://localhost:[YOUR_PORT_NUMBER]/api/tasks/
+
+            /* In the header sepcify ...
+                User-Agent: Fiddler
+                Content-Type: application/json
+
+            OR
+
+                User-Agent: Fiddler
+                Content-Type: application/xml
+            */
+            config.Routes.MapHttpRoute(name: "Default", routeTemplate: "api/{controller}");
+            config.Services.Replace(typeof(IHttpControllerSelector), new AcceptHeaderParamHttpControllerSelector(config));
         }
 
     }

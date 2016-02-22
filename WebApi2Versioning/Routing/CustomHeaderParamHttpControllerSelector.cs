@@ -4,18 +4,17 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Dispatcher;
 
 namespace WebApi2Versioning.Routing
 {
-    public class QueryStringHttpControllerSelector : DefaultHttpControllerSelector
+    public class CustomHeaderParamHttpControllerSelector : DefaultHttpControllerSelector
     {
         private HttpConfiguration _config;
 
-        public QueryStringHttpControllerSelector(HttpConfiguration config)
+        public CustomHeaderParamHttpControllerSelector(HttpConfiguration config)
             : base(config)
         {
             _config = config;
@@ -32,8 +31,8 @@ namespace WebApi2Versioning.Routing
                 var controllerName = routeData.Values["controller"].ToString();
                 HttpControllerDescriptor controllerDescriptor;
 
-                // Get the version number as in '?V1'  or  '?V2'
-                string versionNum = GetVersionFromQueryString(request);
+                // Get the version number as in 'V1'  or  'V2'
+                string versionNum = GetVersionFromHeader(request);
 
                 if (versionNum == "v1")
                 {
@@ -59,18 +58,23 @@ namespace WebApi2Versioning.Routing
         }
 
         /// <summary>  
-        /// Method to Get Query String Values from URL to get the version number  e.g. '?V1'  or  '?V2'
+        /// Method to Get Query String Values from custom header parameter  e.g. 'Version-Num: V1'  or  'Version-Num: V2'
         /// </summary>  
         /// <param name="request">HttpRequestMessage: Current Request made through Browser or Fiddler</param>  
         /// <returns>Version Number</returns>  
-        private string GetVersionFromQueryString(HttpRequestMessage request)
+        private string GetVersionFromHeader(HttpRequestMessage request)
         {
-            var versionStr = HttpUtility.ParseQueryString(request.RequestUri.Query);
+            const string HEADER_NAME = "Version-Num";
 
-            if (versionStr[0] != null)
+            if (request.Headers.Contains(HEADER_NAME))
             {
-                return versionStr[0];
+                var versionHeader = request.Headers.GetValues(HEADER_NAME).FirstOrDefault();
+                if (versionHeader != null)
+                {
+                    return versionHeader;
+                }
             }
+
             return "V1";
         }
     }

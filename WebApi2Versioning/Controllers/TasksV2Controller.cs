@@ -14,7 +14,7 @@ namespace WebApi2Versioning.Controllers
         //[Route(Name = "AddTaskV2")]
         public string AddTask()
         {
-            return "In V2 USING CONTROLLER NAME HTTP CONTROLLER SELECTOR";
+            return "In V2 USING CUSTOM CONTROLLER SELECTOR";
         }
     }
 }
