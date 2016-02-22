@@ -53,6 +53,31 @@ In Visual Studio 2015, uncomment the line '// ConfigureControllerNameVersioning(
 (2) http://localhost:[YOUR_PORT_NUMBER]/api/v2/tasks
 
 
+####Problem 03####
+We want to version our web by defining URIs like the following:
+
+/api/tasks/?V1
+
+/api/tasks/?V2
+
+
+But in this case we want to map to controllers with the following names:
+
+MyProject.Controllers.TasksController
+
+MyProject.Controllers.TasksV2Controller
+
+
+
+####To Test####
+
+In Visual Studio 2015, uncomment the line '// ConfigureQueryStringVersioning(config);' in the WebApiConfig class, then simply run the project using ctrl-F5, and then in Fiddler, issue the following GET requests ...
+
+(1) http://localhost:[YOUR_PORT_NUMBER]/api/tasks/?V1
+
+(2) http://localhost:[YOUR_PORT_NUMBER]/api/tasks/?V2
+
+
 
 ####Information Sources####
 
