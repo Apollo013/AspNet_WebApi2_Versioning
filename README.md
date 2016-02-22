@@ -1,5 +1,5 @@
 # Web_API_2_URI_Versioning
-A DOTNET Web Api 2 project that demonstrates several techniques for API versioning using route uri, query string parameters, customer request header & accept header (content-type). The project makes use of custom controller selectors that extend/implement both 'DefaultHttpControllerSelector' and 'IHttpControllerSelector', along with custom attribute-based routing & contraints. Requires Fiddler to test.
+A DOTNET Web Api 2 project that demonstrates several techniques for API versioning using route uri, query string parameters, custom request header & accept header (content-type). The project makes use of custom controller selectors that extend/implement both 'DefaultHttpControllerSelector' and 'IHttpControllerSelector', along with custom attribute-based routing & contraints. Requires Fiddler to test.
 
 ####Technique 01####
 We want to version our web api by defining URIs like the following:
