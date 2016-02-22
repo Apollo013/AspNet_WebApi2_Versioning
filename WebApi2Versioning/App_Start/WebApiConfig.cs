@@ -78,8 +78,8 @@ namespace WebApi2Versioning
 
             /**** TO TEST ****/
             // Use FIDDLER or POSTMAN and try the following GET requests
-            // http://localhost:[YOUR_PORT_NUMBER]/api/v1/tasks/
-            // http://localhost:[YOUR_PORT_NUMBER]/api/v2/tasks/
+            // http://localhost:[YOUR_PORT_NUMBER]/api/tasks/?V1
+            // http://localhost:[YOUR_PORT_NUMBER]/api/tasks/?V2
             config.Routes.MapHttpRoute(name: "Tasks", routeTemplate: "api/{controller}");
             config.Routes.MapHttpRoute(name: "Tasks2", routeTemplate: "api/{controller}");
             config.Services.Replace(typeof(IHttpControllerSelector), new QueryStringHttpControllerSelector(config));
