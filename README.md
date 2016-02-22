@@ -2,7 +2,7 @@
 A DOTNET Web Api 2 project that demonstrates one technique for API versioning using the route uri in conjunction with route attributes. The project makes use of a custom controller selector that implements 'IHttpControllerSelector', along with custom attribute-based routing & contraints. Requires Fiddler to test.
 
 ####Problem 01####
-We want to version our web by defining URIs like the following:
+We want to version our web api by defining URIs like the following:
 
 /api/v1/tasks/
 
@@ -27,9 +27,9 @@ In Visual Studio 2015, uncomment the line '// ConfigureNamespaceVersioning(confi
 
 
 Both will respond with a message confirming which controller the request was routed to. (You may need to change the port number from 50333 to whatever is relevant on your system)
-
+# #
 ####Problem 02####
-We want to version our web by defining URIs like the following:
+We want to version our web api by defining URIs like the following:
 
 /api/v1/tasks/
 
@@ -54,7 +54,7 @@ In Visual Studio 2015, uncomment the line '// ConfigureControllerNameVersioning(
 
 
 ####Problem 03####
-We want to version our web by defining URIs like the following:
+We want to version our web api by specifying parameters in our URIs like the following:
 
 /api/tasks/?V1
 
