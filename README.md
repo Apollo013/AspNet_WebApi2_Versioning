@@ -130,7 +130,7 @@ MyProject.Controllers.TasksV2Controller
 
 ####To Test####
 
-In Visual Studio 2015, uncomment the line '// ConfigureCustomHeaderVersioning(config);' in the WebApiConfig class, then simply run the project using ctrl-F5, and then in Fiddler, issue the following GET requests ...
+In Visual Studio 2015, uncomment the line '// ConfigureAcceptHeaderVersioning(config);' in the WebApiConfig class, then simply run the project using ctrl-F5, and then in Fiddler, issue the following GET requests ...
 
 (1) http://localhost:[YOUR_PORT_NUMBER]/api/tasks
 
