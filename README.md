@@ -101,7 +101,7 @@ We want to version our web api by specifying parameters in our URIs like the fol
 |/api/tasks/|application/json|MyProject.Controllers.TasksController|
 |/api/tasks/|application/xml|MyProject.Controllers.TasksV2Controller|
 
-####To Test####
+#####To Test
 
 In Visual Studio 2015, uncomment the line '// ConfigureAcceptHeaderVersioning(config);' in the WebApiConfig class, then simply run the project using ctrl-F5, and then in Fiddler, issue the following GET requests ...
 
@@ -120,7 +120,8 @@ In the header sepcify ...
       Content-Type: application/xml
       
       
-      
+---
+
 ####Resources####
 |Title|Author|Publisher|
 |-----|------|---------|
