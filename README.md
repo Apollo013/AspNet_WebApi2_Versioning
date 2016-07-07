@@ -16,14 +16,17 @@ We want to version our web api by defining URIs like the following:
 
 In Visual Studio 2015, uncomment the line '// ConfigureNamespaceVersioning(config);' in the WebApiConfig class, then simply run the project using ctrl-F5, and then in Fiddler, issue the following GET requests ...
 
-(1) http://localhost:[YOUR_PORT_NUMBER]/api/v1/tasks
-
-(2) http://localhost:[YOUR_PORT_NUMBER]/api/v2/tasks
+|Requests|
+|--------|
+|http://localhost:[YOUR_PORT_NUMBER]/api/v1/tasks|
+|http://localhost:[YOUR_PORT_NUMBER]/api/v2/tasks|
 
 
 Both will respond with a message confirming which controller the request was routed to. (You may need to change the port number from 50333 to whatever is relevant on your system)
-# #
-####Technique 02####
+
+---
+
+####Technique 02
 We want to version our web api by defining URIs like the following:
 
 /api/v1/tasks/
