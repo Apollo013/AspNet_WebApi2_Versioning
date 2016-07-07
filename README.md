@@ -3,7 +3,9 @@ An ASP.NET Web Api 2 project that demonstrates several techniques for API versio
 
 ---
 ####Technique 01
+
 We want to version our web api by defining URIs like the following:
+
 |URI|Mapped To Controller|
 |---|--------------------|
 |/api/v1/tasks/|MyProject.Controllers.V1.TasksController|
