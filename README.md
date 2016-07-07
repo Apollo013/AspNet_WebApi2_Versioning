@@ -1,23 +1,16 @@
 # Web_API_2_URI_Versioning
 An ASP.NET Web Api 2 project that demonstrates several techniques for API versioning using route uri, query string parameters, custom request header & accept header (content-type). The project makes use of custom controller selectors that extend/implement both 'DefaultHttpControllerSelector' and 'IHttpControllerSelector', along with custom attribute-based routing & contraints. Requires Fiddler to test.
 
-####Technique 01####
+---
+####Technique 01
 We want to version our web api by defining URIs like the following:
-
-/api/v1/tasks/
-
-/api/v2/tasks/
-
-
-These should map to controllers in the following namespaces:
-
-MyProject.Controllers.V1.TasksController
-
-MyProject.Controllers.V2.TasksController
+|URI|Mapped To Controller|
+|---|--------------------|
+|/api/v1/tasks/|MyProject.Controllers.V1.TasksController|
+|/api/v2/tasks/|MyProject.Controllers.V2.TasksController
 
 
-
-####To Test####
+#####To Test
 
 In Visual Studio 2015, uncomment the line '// ConfigureNamespaceVersioning(config);' in the WebApiConfig class, then simply run the project using ctrl-F5, and then in Fiddler, issue the following GET requests ...
 
