@@ -1,4 +1,4 @@
-# WebApi2_Versioning
+# AspNet_WebApi2_Versioning
 An ASP.NET Web Api 2 project that demonstrates several techniques for API versioning using route uri, query string parameters, custom request header & accept header (content-type). The project makes use of custom controller selectors that extend/implement both 'DefaultHttpControllerSelector' and 'IHttpControllerSelector', along with custom attribute-based routing & contraints. Requires Fiddler to test.
 
 ---
